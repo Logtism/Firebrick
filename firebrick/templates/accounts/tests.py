@@ -2,7 +2,7 @@ from django.test import TestCase, Client
 from django.urls import reverse, resolve
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
-from gravel.tests import BasicViewTest
+from firebrick.tests import BasicViewTest
 from .models import Profile
 from . import views
 

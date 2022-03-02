@@ -7,7 +7,7 @@ class AccountsConfig(AppConfig):
     name = 'accounts'
 
     def ready(self):
-        from gravel import settings
+        from firebrick import settings
         
         import accounts.signals
         from django.contrib.auth.models import User
