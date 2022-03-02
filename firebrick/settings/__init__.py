@@ -1,1 +1,1 @@
-from gravel.settings import username_len
+from firebrick.settings import username_len

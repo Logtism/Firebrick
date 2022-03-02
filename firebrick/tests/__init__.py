@@ -1,3 +1,3 @@
-from gravel.tests import asserts
-from gravel.tests.basic import BasicViewTest
-from gravel.tests.test import *
+from firebrick.tests import asserts
+from firebrick.tests.basic import BasicViewTest
+from firebrick.tests.test import *

@@ -1,4 +1,4 @@
-import gravel
+import firebrick
 import os
 
 
@@ -27,9 +27,9 @@ class TemplateFromFiles(Template):
         self.name = name
         self.base_local_path = base_local_path
         if path is not None:
-            self.path = os.path.join(gravel.__path__[0], 'templates', path)
+            self.path = os.path.join(firebrick.__path__[0], 'templates', path)
         else:
-            self.path = os.path.join(gravel.__path__[0], 'templates', self.name)
+            self.path = os.path.join(firebrick.__path__[0], 'templates', self.name)
         self.files = []
         self.files_to_data()
         

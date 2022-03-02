@@ -1,4 +1,4 @@
-from gravel.tests.test import ResolveUrlTest, GetViewTest
+from firebrick.tests.test import ResolveUrlTest, GetViewTest
 
 
 class BasicViewTest(ResolveUrlTest, GetViewTest):

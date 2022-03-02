@@ -152,4 +152,4 @@ cython_debug/
 #.idea/
 
 # python package
-Gravel.egg-info/
+Firebrick.egg-info/
