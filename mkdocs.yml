@@ -1,0 +1,9 @@
+site_name: My Docs
+
+nav:
+    - Home: index.md
+    - Installtion: installtion.md
+    - Settings: settings.md
+    - Commands: commands.md
+    - TODO: TODO.md
+theme: readthedocs
