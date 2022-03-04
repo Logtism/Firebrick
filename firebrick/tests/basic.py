@@ -1,6 +1,9 @@
-from firebrick.tests.test import ResolveUrlTest, GetViewTest
+from firebrick.tests.test import ResolveUrlTest, GetViewTest, PostViewTest
 
 
-class BasicViewTest(ResolveUrlTest, GetViewTest):
-    def setUp(self):
-        self.client = Client()
+class BasicGETViewTest(ResolveUrlTest, GetViewTest):
+    pass
+        
+        
+class BasicPOSTViewTest(ResolveUrlTest, PostViewTest):
+    pass
