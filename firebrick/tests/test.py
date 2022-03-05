@@ -30,18 +30,3 @@ class GetViewTest:
         
         self.assertEquals(response.status_code, self.status)
         self.assertTemplateUsed(response, self.template)
-        
-    
-class PostViewTest:
-    def test_POST(self):
-        self.client = Client()
-        
-        url = get_reverse_ur(self.name)
-        
-        response = self.client.post(url, self.form_data)
-        
-        self.assertEquals(response.status_code, self.status)
-        if self.post_template:
-            self.assertTemplateUsed(response, self.post_template)
-        if self.post_redirect:
-            pass
