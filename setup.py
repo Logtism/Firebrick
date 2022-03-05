@@ -19,6 +19,7 @@ setup(
     ],
     install_requires=[
         'django',
+        'django-crispy-forms',
         'click'
     ],
     packages=find_packages(),

@@ -6,9 +6,18 @@ Firebrick is a package with some general utilitys for django.
 
 ### How do I install Firebrick?
 Via pip:
-On Windows: `pip install firebrick`
-On linux: `pip3 install firebrick`
-In pipenv `pipenv install firebrick`
+On Windows:
+```
+pip install firebrick
+```
+On linux:
+```
+pip3 install firebrick
+```
+In pipenv:
+```
+pipenv install firebrick
+```
 
 In `settings.py` add the following:
 
