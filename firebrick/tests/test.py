@@ -1,7 +1,7 @@
 from django.urls import resolve, reverse
 
 
-def get_reverse_ur(name):
+def get_reverse_url(name):
     if '/' not in name:
         return reverse(name)
     else:
@@ -12,7 +12,7 @@ class ResolveUrlTest:
     def test_url_is_resolved(self):
         self.client = Client()
         
-        url = get_reverse_ur(self.name)
+        url = get_reverse_url(self.name)
         
         if '__func__' in dir(self.view):
             self.assertEquals(resolve(url).func, self.view.__func__)
@@ -24,7 +24,7 @@ class GetViewTest:
     def test_GET(self):
         self.client = Client()
         
-        url = get_reverse_ur(self.name)
+        url = get_reverse_url(self.name)
         
         response = self.client.get(url)
         
