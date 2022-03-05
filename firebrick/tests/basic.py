@@ -1,4 +1,4 @@
-from firebrick.tests.test import ResolveUrlTest, GetViewTest, PostViewTest
+from firebrick.tests.test import ResolveUrlTest, GetViewTest
 
 
 class BasicGETViewTest(ResolveUrlTest, GetViewTest):
