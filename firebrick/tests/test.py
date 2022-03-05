@@ -1,4 +1,5 @@
 from django.urls import resolve, reverse
+from django.test import Client
 
 
 def get_reverse_url(name):
@@ -9,9 +10,7 @@ def get_reverse_url(name):
 
 
 class ResolveUrlTest:
-    def test_url_is_resolved(self):
-        self.client = Client()
-        
+    def test_url_is_resolved(self):   
         url = get_reverse_url(self.name)
         
         if '__func__' in dir(self.view):
@@ -22,11 +21,11 @@ class ResolveUrlTest:
 
 class GetViewTest:
     def test_GET(self):
-        self.client = Client()
+        client = Client()
         
         url = get_reverse_url(self.name)
         
-        response = self.client.get(url)
+        response = client.get(url)
         
         self.assertEquals(response.status_code, self.status)
         self.assertTemplateUsed(response, self.template)

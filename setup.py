@@ -13,10 +13,6 @@ setup(
     description='Django utilitys',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    classifiers=[
-        "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
-    ],
     install_requires=[
         'django',
         'django-crispy-forms',
@@ -24,5 +20,19 @@ setup(
     ],
     packages=find_packages(),
     python_requires=">=3.9",
-    include_package_data=True
+    include_package_data=True,
+    classifiers=[
+        "Environment :: Web Environment",
+        "Framework :: Django",
+        "Intended Audience :: Developers",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3 :: Only",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    ],
+    project_urls={
+        'Documentation': 'https://firebrick.readthedocs.io/en/latest/',
+        'Source': 'https://github.com/Logtism/Firebrick'
+    }
 )
