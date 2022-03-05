@@ -32,7 +32,7 @@ setup(
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     ],
     project_urls={
-        'Documentation': 'https://readthedocs.org/projects/firebrick/',
+        'Documentation': 'https://firebrick.readthedocs.io/en/latest/',
         'Source': 'https://github.com/Logtism/Firebrick'
     }
 )
