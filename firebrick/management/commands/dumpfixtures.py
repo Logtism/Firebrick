@@ -7,18 +7,7 @@ from inspect import isclass
 from click import echo
 from importlib import import_module
 import os
-
-
-default_ignore_apps = [
-    'admin',
-    'auth',
-    'contenttypes',
-    'sessions',
-    'messages',
-    'staticfiles',
-    'crispy_forms',
-    'firebrick'
-]
+from firebrick.management.commands.default_ignore import default_ignore_apps
 
 
 class Command(BaseCommand):

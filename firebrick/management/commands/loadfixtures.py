@@ -4,18 +4,7 @@ from django.conf import settings
 from django.apps import apps
 from click import echo
 import os
-
-
-default_ignore_apps = [
-    'admin',
-    'auth',
-    'contenttypes',
-    'sessions',
-    'messages',
-    'staticfiles',
-    'crispy_forms',
-    'firebrick'
-]
+from firebrick.management.commands.default_ignore import default_ignore_apps
 
 
 class Command(BaseCommand):
