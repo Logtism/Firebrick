@@ -7,7 +7,7 @@ from inspect import isclass
 from click import echo
 from importlib import import_module
 import os
-from firebrick.management.commands.default_ignore import default_ignore_apps
+from firebrick.management.commands._default_ignore import default_ignore_apps
 
 
 class Command(BaseCommand):
@@ -30,5 +30,6 @@ class Command(BaseCommand):
                     for var in app_models.__dict__:
                         if isclass(app_models.__dict__[var]) and issubclass(app_models.__dict__[var], Model):
                             if app == app_models.__dict__[var].__repr__(app_models.__dict__[var]).split("'")[1].split('.')[0]:
-                                call_command('dumpdata', f'{app}.{var}', output=os.path.join(app_fixture_path, var.lower() + ".json"), indent=4)
+                                if len(app_models.__dict__[var].objects.all()) > 0:
+                                    call_command('dumpdata', f'{app}.{var}', output=os.path.join(app_fixture_path, var.lower() + ".json"), indent=4)
             

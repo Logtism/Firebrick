@@ -4,7 +4,7 @@ from django.conf import settings
 from django.apps import apps
 from click import echo
 import os
-from firebrick.management.commands.default_ignore import default_ignore_apps
+from firebrick.management.commands._default_ignore import default_ignore_apps
 
 
 class Command(BaseCommand):
