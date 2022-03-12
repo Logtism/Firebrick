@@ -2,12 +2,12 @@ from django.test import TestCase, Client
 from django.urls import reverse, resolve
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
-from firebrick.tests import BasicViewTest
+from firebrick.tests import BasicGETViewTest
 from .models import Profile
 from . import views
 
 
-class TestRegister(TestCase, BasicViewTest):
+class TestRegister(TestCase, BasicGETViewTest):
     name = 'register'
     view = views.register
     template = 'accounts/register.html'
@@ -43,14 +43,14 @@ class TestRegister(TestCase, BasicViewTest):
         self.assertTemplateUsed(response, self.template)
 
 
-class TestLogin(TestCase, BasicViewTest):
+class TestLogin(TestCase, BasicGETViewTest):
     name = 'login'
     view = auth_views.LoginView
     template = 'accounts/login.html'
 
 
         
-class TestLogout(TestCase, BasicViewTest):
+class TestLogout(TestCase, BasicGETViewTest):
     name = 'logout'
     view = auth_views.LogoutView
     template = 'accounts/logout.html'
