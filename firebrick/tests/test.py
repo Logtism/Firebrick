@@ -63,3 +63,28 @@ class GetViewOr404Test:
         
         if 'template_fail' in dir(self):
             self.assertTemplateUsed(response, self.template_fail)
+            
+            
+class GetLoginRequired:
+    def test_GET_not_logged_in(self):
+        client = Client()
+        
+        url = get_reverse_url(self)
+        
+        response = client.get(url)
+        
+        self.assertRedirects(response, f'{reverse(settings.LOGIN_URL)}?next={url}')
+        
+    def test_GET_logged_in(self):
+        User.objects.create_user(username='testuser1', password='thisisapassword')
+        
+        client = Client()
+        
+        url = get_reverse_url(self)
+        
+        client.login(username='testuser1', password='thisisapassword')
+        response = client.get(url)
+        
+        self.assertEquals(response.status_code, self.status)
+        self.assertTemplateUsed(response, self.template)
+    
