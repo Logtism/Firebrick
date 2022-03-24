@@ -1,6 +1,8 @@
 from django.urls import resolve, reverse
 from django.test import Client
 from django.core.management import call_command
+from django.conf import settings
+from django.contrib.auth.models import User
 
 
 def get_reverse_url(instance):
