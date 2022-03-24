@@ -1,13 +1,14 @@
-from django.db.models.query import QuerySet
-from django.http import HttpResponseNotFound
+from django.db.models.manager import Manager
+from django.http import Http404
 from django.template.loader import render_to_string
+from django.conf import settings
 
 
-def get_object_or_404(**kwargs):
+def get_object_or_404(self, error_text='Page is can not be found', **kwargs):
     try:
         return self.get(**kwargs)
     except self.model.DoesNotExist:
-        return HttpResponseNotFound(render_to_string(settings.ERROR_TEMPLATES[404]))
+        raise  Http404(error_text)
 
 
-QuerySet.get_object_or_404 = get_object_or_404
+Manager.get_object_or_404 = get_object_or_404
