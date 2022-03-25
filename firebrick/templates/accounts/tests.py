@@ -11,6 +11,7 @@ class TestRegister(TestCase, BasicGETViewTest):
     name = 'register'
     view = views.register
     template = 'accounts/register.html'
+    status = 200
         
     def test_POST(self):      
         response = self.client.post(
@@ -47,6 +48,7 @@ class TestLogin(TestCase, BasicGETViewTest):
     name = 'login'
     view = auth_views.LoginView
     template = 'accounts/login.html'
+    status = 200
 
 
         
@@ -54,3 +56,4 @@ class TestLogout(TestCase, BasicGETViewTest):
     name = 'logout'
     view = auth_views.LogoutView
     template = 'accounts/logout.html'
+    status = 200

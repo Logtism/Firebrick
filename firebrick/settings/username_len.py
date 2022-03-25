@@ -32,3 +32,5 @@ username.validators.append(MinLengthValidator(USERNAME_LENGTH_MIN))
 # adding a validator to check that the username only contains valid chars
 username.validators.append(RegexValidator(USERNAME_VALID_CHARS, 
                                             message='Enter a valid username. A username may contain only letters, numbers, and _ characters.'))
+
+User.username.field.help_text = settings.USERNAME_HELP_TEXT

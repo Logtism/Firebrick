@@ -22,6 +22,7 @@ Also add at the bottom of the settings.py file:
  - USERNAME_VALID_CHARS = '^[0-9a-zA-Z_]*$'
  - USERNAME_LENGTH_MIN = 3
  - USERNAME_LENGTH_MAX = 16
+ - USERNAME_HELP_TEXT = 'Required. Between 3 and 16 characters. Letters, digits and _ only.'
  
 And add the following to your projects main urls.py file:
  - from django.contrib.auth import views as auth_views

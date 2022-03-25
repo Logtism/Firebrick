@@ -1,8 +1,4 @@
-from firebrick.tests.test import (
-    ResolveUrlTest,
-    GetViewTest,
-    GetViewOr404Test
-)
+from firebrick.tests.test import *
 
 
 class BasicGETViewTest(ResolveUrlTest, GetViewTest):
@@ -10,4 +6,8 @@ class BasicGETViewTest(ResolveUrlTest, GetViewTest):
 
 
 class BasicGETOr404ViewTest(ResolveUrlTest, GetViewOr404Test):
+    pass
+
+
+class BasicGETLoginRequired(ResolveUrlTest, GetLoginRequired):
     pass
