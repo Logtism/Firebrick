@@ -6,12 +6,13 @@ ALLOWED_METHODS = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
 
 
 class EndPoint:
-    methods = {}
 
-    def __init_subclass__(cls):
+    def __init__(self):
+        self.methods = {}
+        
         for method in ALLOWED_METHODS:
-            if method in cls.__dict__:
-                cls.methods[method] = cls.__dict__[method]
+            if method in self.__class__.__dict__:
+                self.methods[method] = self.__class__.__dict__[method]
 
     @csrf_exempt
     def handler(self, request, *args, **kwargs):
