@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     
     'firebrick',
     
+    'firebrick_database.apps.FirebrickDatabaseConfig',
     'start_accounts_command.apps.StartAccountsCommandConfig',
 ]
 
