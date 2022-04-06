@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class {{appconfig-name}}Config(AppConfig):
+class StartAccountsCommandConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'api.{{name}}'
+    name = 'start_accounts_command'

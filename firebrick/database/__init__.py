@@ -1,1 +1,0 @@
-from firebrick.database import get_or_404
