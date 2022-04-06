@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     
     'firebrick_database.apps.FirebrickDatabaseConfig',
     'start_accounts_command.apps.StartAccountsCommandConfig',
+    'tests_asserts.apps.TestsAssertsConfig',
 ]
 
 MIDDLEWARE = [
