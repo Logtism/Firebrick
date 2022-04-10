@@ -2,7 +2,7 @@ from django.test import TestCase, Client
 from django.urls import reverse, resolve
 from django.core.management import call_command
 from django.conf import settings
-from django.contrib.auth.models import User
+
 
 def get_reverse_url(instance, args=None):
     if '/' not in instance.name:
@@ -103,6 +103,7 @@ class GETLoginRequiredTest:
 
     def test_GET_logged_in(self):
         # Creating a user
+        from django.contrib.auth.models import User
         User.objects.create_user(username='testuser1', password='password1')
 
         client = Client()
