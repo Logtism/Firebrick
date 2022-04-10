@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', auth_views.LoginView.as_view(template_name='tests_test/login.html'), name='login'),
     path('tests_test/', include('tests_test.urls')),
+    path('api/', include('firebrick_api.urls')),
 ]

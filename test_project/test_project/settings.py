@@ -40,9 +40,14 @@ INSTALLED_APPS = [
     
     'crispy_forms',
     'firebrick',
-    
+    # Database
     'firebrick_database.apps.FirebrickDatabaseConfig',
+    # API
+    'firebrick_api.apps.FirebrickApiConfig',
+    # Commands
     'start_accounts_command.apps.StartAccountsCommandConfig',
+    'start_api_command.apps.StartApiCommandConfig',
+    # Tests
     'tests_asserts.apps.TestsAssertsConfig',
     'tests_test.apps.TestsTestConfig',
 ]

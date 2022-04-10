@@ -2,6 +2,8 @@ from django.test import TestCase, Client
 from django.urls import reverse, resolve
 from django.core.management import call_command
 from django.conf import settings
+from firebrick.api.endpoint import Endpoint
+import inspect
 
 
 def get_reverse_url(instance, args=None):
@@ -25,15 +27,18 @@ class ResolveUrlTest:
         
         # Checks if the view is a class based view or function based view.
         if '__func__' in dir(self.view):
-            self.assertEquals(resolve(url).func, self.view.__func__)
+            # Checks if the `self.view` is a api `Endpoint` so it can be handled correctly
+            if inspect.isclass(self.view.__self__) and issubclass(self.view.__self__, Endpoint):
+                self.assertEquals(resolve(url).func, self.view)
+            else:
+                self.assertEquals(resolve(url).func, self.view.__func__)
         else:
             self.assertEquals(resolve(url).func.view_class, self.view)
             
 
 class GetViewTest:
     '''
-    Checks if the url returns the correct templates and status code
-    or whatever you want.
+    Checks if the url returns the correct templates and status code.
     '''
 
     def test_GET(self):
