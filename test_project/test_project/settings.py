@@ -38,11 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
+    'crispy_forms',
     'firebrick',
     
     'firebrick_database.apps.FirebrickDatabaseConfig',
     'start_accounts_command.apps.StartAccountsCommandConfig',
     'tests_asserts.apps.TestsAssertsConfig',
+    'tests_test.apps.TestsTestConfig',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +129,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LOGIN_REDIRECT_URL = 'base-home'
+LOGIN_URL = 'login'
