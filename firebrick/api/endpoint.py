@@ -1,5 +1,6 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
+from firebrick.exceptions.api import BadRequest
 
 
 ALLOWED_METHODS = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
@@ -18,7 +19,11 @@ class Endpoint:
     def handler(cls, request, *args, **kwargs):
         # Check if the method is in the endpoint and if not return a not allowed method msg
         if request.method in cls.methods:
-            response = cls.methods[request.method](request, *args, **kwargs)
+            try:
+                response = cls.methods[request.method](cls, request, *args, **kwargs)
+            except BadRequest as e:
+                # Return a function so if the user wants to they can override the function to give custom functionliaty
+                return cls.badrequesthandler(e)
             # Check what type the return of the endpoint 
             if type(response) == dict:
                 return JsonResponse(response)
@@ -33,3 +38,10 @@ class Endpoint:
     @classmethod
     def not_allowed(cls, request, *args, **kwargs):
         return JsonResponse({'success': False, 'error_message': 'Method is not allowed.'}, status=405)
+    
+    @classmethod
+    def badrequesthandler(cls, error_msg):
+        if type(error_msg) == tuple:
+            return JsonResponse({'success': False, 'error_message': str(error_msg[0])}, status=int(error_msg[1]))
+        else:
+            return JsonResponse({'success': False, 'error_message': str(error_msg)}, status=400)
