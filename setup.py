@@ -15,8 +15,7 @@ setup(
     long_description_content_type='text/markdown',
     install_requires=[
         'django',
-        'django-crispy-forms',
-        'click'
+        'django-crispy-forms'
     ],
     packages=find_packages(),
     python_requires=">=3.9",

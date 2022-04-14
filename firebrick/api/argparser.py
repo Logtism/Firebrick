@@ -1,4 +1,4 @@
-from django.core.exceptions import BadRequest
+from firebrick.exceptions.api import BadRequest
 import json
 
 
@@ -30,10 +30,15 @@ class RequestParser:
                 value = body[arg.name]
                 if arg.type:
                     if type(value) != arg.type:
-                        value = arg.type(value)
+                        try:
+                            value = arg.type(value)
+                        except ValueError:
+                            raise BadRequest(f'{arg.name} is not type {str(arg.type().__class__.__name__)}')
                 data[arg.name] = value
             except KeyError:
                 if arg.required:
                     raise BadRequest(arg.help_msg)
+                else:
+                    body[arg.name] = None
 
         return body

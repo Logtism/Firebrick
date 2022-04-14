@@ -153,6 +153,3 @@ cython_debug/
 
 # python package
 Firebrick.egg-info/
-
-# Testing
-/test_project
