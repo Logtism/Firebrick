@@ -1,5 +1,7 @@
 from firebrick.api.endpoint import Endpoint
 from firebrick.api.argparser import RequestParser
+from firebrick.api.serializer import Serializer
+from tests_test.models import Person
 
 
 class test_endpoint(Endpoint):
@@ -37,3 +39,29 @@ class test_argparse_two_required(Endpoint):
     def POST(self, request):
         data = test_argparse_one_required_parser.parse(request)
         return {'success': True, 'name': data['name'], 'name2': data['name2']}
+    
+    
+class test_serializer_data(Serializer):
+    class Meta:
+        model = Person
+        fields = ['id']
+    
+
+class test_serializer_data_view(Endpoint):
+    def POST(self, request):
+        person = Person.objects.create(name='helloworld')
+        data = test_serializer_data.data(request)
+        return {'success': True, 'id': data.id}
+    
+
+class test_serializer_parse(Serializer):
+    class Meta:
+        model = Person
+        fields = ['id', 'name']
+    
+
+class test_serializer_parse_view(Endpoint):
+    def POST(self, request):
+        person = Person.objects.create(id=1, name='helloworld')
+        data = test_serializer_parse.parse(person)
+        return {'success': True, **data}

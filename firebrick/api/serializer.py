@@ -21,8 +21,10 @@ class Serializer:
                 fields_data[field] = body[field]
             except KeyError:
                 raise BadRequest(f'{field} is required.')
-            
-        return cls.Meta.model.objects.get_object_or_404(**fields_data, error_text='Object could not be found.')
+        try:
+            return cls.Meta.model.objects.get_object_or_404(**fields_data, error_text='Object could not be found.')
+        except ValueError:
+            raise BadRequest('Not all arguments were the correct type.')
     
     @classmethod
     def parse(cls, object):
@@ -35,7 +37,5 @@ class Serializer:
         for field in cls.Meta.fields:
             # Get the fields value
             data[field] = eval(f'object.{field}')
-        
-        print(data)
         
         return data

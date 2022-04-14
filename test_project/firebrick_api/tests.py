@@ -1,6 +1,7 @@
 from django.test import TestCase, Client
 from django.urls import reverse, resolve
 from firebrick.tests import ResolveUrlTest
+from tests_test.models import Person
 from . import views
 import json
 
@@ -152,3 +153,78 @@ class TestArgParserOneRequired(TestCase, ResolveUrlTest):
         self.assertEquals(json.loads(response.content)['name'], 22)
         
         
+class TestSerializerData(TestCase, ResolveUrlTest):
+    name = 'api-test-serializer-data'
+    view = views.test_serializer_data_view.handler
+    
+    def test_not_sending_json_body(self):
+        client = Client()
+        
+        url = reverse(self.name)
+        
+        response = client.post(url)
+        
+        self.assertEquals(response.content, b'{"success": false, "error_message": "Body is not valid json."}')
+        self.assertEquals(response.status_code, 400)
+        
+    def test_sending_valid_json_without_id_field(self):
+        client = Client()
+        
+        url = reverse(self.name)
+        
+        response = client.post(url, {}, content_type="application/json")
+        
+        self.assertEquals(response.content, b'{"success": false, "error_message": "id is required."}')
+        self.assertEquals(response.status_code, 400)
+        
+    def test_sending_valid_json_with_incorrect_id_type(self):
+        client = Client()
+        
+        url = reverse(self.name)
+        
+        response = client.post(url, {'id': 'nonono'}, content_type="application/json")
+
+        self.assertEquals(response.content, b'{"success": false, "error_message": "Not all arguments were the correct type."}')
+        self.assertEquals(response.status_code, 400)
+        
+    def test_sending_valiid_json_with_id_that_does_not_exist(self):
+        client = Client()
+        
+        url = reverse(self.name)
+        
+        response = client.post(url, {'id': 10}, content_type="application/json")
+        
+        self.assertEquals(response.status_code, 404)
+        
+    def test_sending_valiid_json_with_id_that_does_exist(self):
+        person = Person.objects.create(id=1, name='test')
+        
+        client = Client()
+        
+        url = reverse(self.name)
+        
+        response = client.post(url, {'id': person.id}, content_type="application/json")
+        
+        self.assertEquals(response.status_code, 200)
+        self.assertIn('id', json.loads(response.content))
+        self.assertEquals(person.id, json.loads(response.content)['id'])
+        
+
+class TestSerializerParse(TestCase, ResolveUrlTest):
+    name = 'api-test-serializer-parse'
+    view = views.test_serializer_parse_view.handler
+    
+    def test_correct_data(self):
+        client = Client()
+        
+        url = reverse(self.name)
+        
+        response = client.post(url)
+        
+        self.assertEquals(response.status_code, 200)
+        
+        self.assertIn('id', json.loads(response.content))
+        self.assertEquals(1, json.loads(response.content)['id'])
+        
+        self.assertIn('name', json.loads(response.content))
+        self.assertEquals('helloworld', json.loads(response.content)['name'])
