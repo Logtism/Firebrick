@@ -1,1 +1,1 @@
-include firebrick/templates/accounts/templates/accounts/*
+include firebrick/templates/accounts_templates/*
