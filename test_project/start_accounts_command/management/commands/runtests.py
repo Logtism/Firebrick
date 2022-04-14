@@ -1,7 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from firebrick.templates.templating import GenerateFromTemplate, TemplateFromFiles
 from django.core.management import call_command
-from click import echo
 import shutil
 import os
 

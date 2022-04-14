@@ -1,6 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
 from firebrick.templates.templating import GenerateFromTemplate, TemplateFromFiles
-from click import echo
 import argparse
 import os
 
