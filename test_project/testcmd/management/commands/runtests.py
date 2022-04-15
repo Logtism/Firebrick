@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
-from firebrick.templates.templating import GenerateFromTemplate, TemplateFromFiles
 from django.core.management import call_command
+import firebrick
+import subprocess
 import shutil
 import os
 
@@ -17,3 +18,7 @@ class Command(BaseCommand):
         
         if os.path.isdir(os.path.join(os.getcwd(), 'accounts')):
             shutil.rmtree(os.path.join(os.getcwd(), 'accounts'))
+            
+        os.chdir(os.path.join(firebrick.__path__[0], 'ui'))
+        
+        subprocess.run(f'python manage.py test --settings=firebrick.ui.ui.settings', shell=True)

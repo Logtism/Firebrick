@@ -1,1 +1,4 @@
 include firebrick/templates/accounts_templates/*
+include firebrick/ui/manage.py
+include firebrick/ui/ul/*
+include firebrick/ui/base/*
