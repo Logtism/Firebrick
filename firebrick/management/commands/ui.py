@@ -18,7 +18,7 @@ class Command(BaseCommand):
         firebrick_settings_path = os.path.join(os.getcwd(), 'firebrick')
         # Check if a firebrick settings dir exists
         if not os.path.isdir(firebrick_settings_path):
-            options['stdout'].write('Firebrick ui settings directory does not exist use command `python manage.py firebrick_init` to create firebrick ui settings.')
+            self.stdout.write('Firebrick ui settings directory does not exist use command `python manage.py firebrick_init` to create firebrick ui settings.')
             # Return so the rest of the function does not execute
             return None
         # Moving to the correct dir to run the firebrick ui

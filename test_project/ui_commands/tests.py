@@ -83,7 +83,7 @@ class TestAddPackageCommand(TestCase):
             stdout=out
         )
         # Check that the command outputs the help msg
-        self.assertEquals('Firebrick ui settings directory does not exist use command `python manage.py firebrick_init` to create firebrick ui settings.', out.getvalue())
+        self.assertEquals('Firebrick ui settings directory does not exist use command `python manage.py firebrick_init` to create firebrick ui settings.\n', out.getvalue())
     
     def test_only_required_arguments(self):
         # Run the `init_firebrick` to create firebrick ui settings files
@@ -176,7 +176,7 @@ class TestUICommand(TestCase):
         out = StringIO()
         call_command('ui', stdout=out)
         
-        self.assertEquals('Firebrick ui settings directory does not exist use command `python manage.py firebrick_init` to create firebrick ui settings.', out.getvalue())
+        self.assertEquals('Firebrick ui settings directory does not exist use command `python manage.py firebrick_init` to create firebrick ui settings.\n', out.getvalue())
     
     # There could be more tests but I don't know how to test if the command runs the `runserver` command.
     # Please make a pull request or contact me on how to test this thank you.
