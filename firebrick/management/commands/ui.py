@@ -34,6 +34,6 @@ class Command(BaseCommand):
             subprocess.run(f'python manage.py makemigrations -v=0 --settings=firebrick.ui.ui.settings', shell=True)
             subprocess.run(f'python manage.py migrate -v=0 --settings=firebrick.ui.ui.settings', shell=True)
             # Using `runuiserver` command so that the firebrick settings path can be passed
-            subprocess.run(f'python manage.py runuiserver --port={port} --settings=firebrick.ui.ui.settings --firebrick-settings={firebrick_settings_path}', shell=True)
+            subprocess.run(f'python manage.py runuiserver --port={port} --settings=firebrick.ui.ui.settings --firebrick-settings-path={firebrick_settings_path}', shell=True)
         except KeyboardInterrupt:
             pass

@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     # Tests
     'tests_asserts.apps.TestsAssertsConfig',
     'tests_test.apps.TestsTestConfig',
+    # UI
+    'ui_commands.apps.UiCommandsConfig',
 ]
 
 MIDDLEWARE = [

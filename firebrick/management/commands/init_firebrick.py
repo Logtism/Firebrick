@@ -63,13 +63,17 @@ default_packages = [
 apps = {
     'base': {
         'name': 'base',
+        'description': 'Base app where base templates and static files are stored',
         'app_import_path': 'base.apps.BaseConfig',
-        'template_name': 'base'
+        'template_name': 'base',
+        'enabled': False
     },
     'accounts': {
         'name': 'accounts',
+        'description': 'Accounts app includes views for login, logout and registertion and a extension of the User model',
         'app_import_path': 'accounts.apps.AccountsConfig',
-        'template_name': 'accounts'
+        'template_name': 'accounts',
+        'enabled': False
     }
 }
 
