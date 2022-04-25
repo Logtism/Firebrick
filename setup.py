@@ -15,8 +15,14 @@ setup(
     long_description_content_type='text/markdown',
     install_requires=[
         'django',
-        'django-crispy-forms'
+        'django-crispy-forms',
+        'click',
+        'gitpython'
     ],
+    entry_points='''
+        [console_scripts]
+        firebrick=firebrick.management.click_commands.cli:cli
+    ''',
     packages=find_packages(),
     python_requires=">=3.9",
     include_package_data=True,

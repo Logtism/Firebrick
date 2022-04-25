@@ -1,0 +1,1 @@
+from firebrick.management.click_commands.init import init
