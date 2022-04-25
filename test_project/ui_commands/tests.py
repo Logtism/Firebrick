@@ -4,17 +4,17 @@ import shutil
 import json
 import os
 from io import StringIO
-from firebrick.management.commands.init_firebrick import apps
+from firebrick.management.commands.initui import apps
 
 
-class TestInit_FirebrickCommand(TestCase):
+class TestInitUICommand(TestCase):
     def tearDown(self):
         if os.path.isdir(os.path.join(os.getcwd(), 'firebrick')):
             shutil.rmtree(os.path.join(os.getcwd(), 'firebrick'))
             
     def test_create_from_scratch(self):
         # Run the command
-        call_command('init_firebrick')
+        call_command('initui')
         # Check that the correct files/dirs were created
         self.assertTrue(os.path.isdir(os.path.join(os.getcwd(), 'firebrick')))
         self.assertTrue(os.path.isfile(os.path.join(os.getcwd(), 'firebrick', 'packages.json')))
@@ -28,7 +28,7 @@ class TestInit_FirebrickCommand(TestCase):
         # Create dir `firebrick`
         os.mkdir(os.path.join(os.getcwd(), 'firebrick'))
         # Run the command
-        call_command('init_firebrick')
+        call_command('initui')
         # Check that files were created
         self.assertTrue(os.path.isfile(os.path.join(os.getcwd(), 'firebrick', 'packages.json')))
         with open(os.path.join(os.getcwd(), 'firebrick', 'packages.json'), 'r') as f:
@@ -46,7 +46,7 @@ class TestInit_FirebrickCommand(TestCase):
         with open(os.path.join(os.getcwd(), 'firebrick', 'apps.json'), 'w') as f:
             pass
         # Run the command
-        call_command('init_firebrick')
+        call_command('initui')
         # Check the files were fixed
         with open(os.path.join(os.getcwd(), 'firebrick', 'packages.json'), 'r') as f:
             self.assertEquals(type(json.load(f)), dict)
@@ -86,8 +86,8 @@ class TestAddPackageCommand(TestCase):
         self.assertEquals('Firebrick ui settings directory does not exist use command `python manage.py firebrick_init` to create firebrick ui settings.\n', out.getvalue())
     
     def test_only_required_arguments(self):
-        # Run the `init_firebrick` to create firebrick ui settings files
-        call_command('init_firebrick')
+        # Run the `initui` to create firebrick ui settings files
+        call_command('initui')
         # Run the command and get the output
         out = StringIO()
         call_command(
@@ -122,8 +122,8 @@ class TestAddPackageCommand(TestCase):
         self.assertEquals(test_package['enabled'], False)
         
     def test_all_arguments(self):
-        # Run the `init_firebrick` to create firebrick ui settings files
-        call_command('init_firebrick')
+        # Run the `initui` to create firebrick ui settings files
+        call_command('initui')
         # Run the command and get the output
         out = StringIO()
         call_command(
